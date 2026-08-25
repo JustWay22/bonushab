@@ -251,11 +251,11 @@ nav.main-nav a:hover{opacity:1;}
 .carousel{
   display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
   padding:6px 2px 18px;cursor:grab;
-  scrollbar-width:thin;
+  scrollbar-width:none;      /* Firefox: скрыть полосу прокрутки */
+  -ms-overflow-style:none;   /* Edge/IE: скрыть полосу прокрутки */
 }
 .carousel.dragging{cursor:grabbing;user-select:none;}
-.carousel::-webkit-scrollbar{height:6px;}
-.carousel::-webkit-scrollbar-thumb{background:rgba(212,175,55,.3);border-radius:10px;}
+.carousel::-webkit-scrollbar{display:none;height:0;}  /* Chrome/Safari: скрыть полосу прокрутки */
 
 .bank-card{
   scroll-snap-align:start;flex:0 0 250px;
