@@ -208,3 +208,87 @@ nav.main-nav a:hover{opacity:1;}
   .hero{padding:40px 0 24px;}
   .why{margin:0 12px;padding:34px 22px;border-radius:24px;}
 }
+
+/* ===================== NEW HOME HERO (notch bar + carousel) ===================== */
+.home-hero{
+  background:linear-gradient(160deg,#FF6A5C 0%,#FF8F6B 45%,#FFC896 100%);
+  padding:20px 0 64px;
+  border-radius:0 0 40px 40px;
+  margin-bottom:56px;
+}
+.notch-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  max-width:1120px;margin:0 auto;padding:0 20px 28px;
+}
+.notch{
+  font-family:'Manrope',sans-serif;font-weight:700;font-size:13.5px;
+  border-radius:16px;padding:12px 18px;line-height:1.25;
+}
+.notch-navy{background:#16224D;color:#fff;}
+.notch-dark{background:#15151F;color:#fff;font-family:'Unbounded',sans-serif;font-size:17px;letter-spacing:.01em;}
+.notch-link{display:block;}
+.notch-mid{flex:1;display:flex;justify-content:center;}
+.notch-side{flex:0 0 auto;max-width:180px;text-align:center;}
+
+.stat-banner{
+  max-width:640px;margin:12px auto 0;background:#15151B;color:#fff;
+  border-radius:28px;padding:30px 36px;text-align:center;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.45);
+}
+.stat-banner .label{color:rgba(255,255,255,.65);font-size:15px;font-weight:600;margin-bottom:10px;}
+.stat-banner .value{
+  font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(38px,7vw,56px);
+  letter-spacing:-.01em;
+}
+
+.offers-heading{
+  text-align:center;font-size:clamp(28px,4.4vw,40px);margin:44px 0 26px;color:#181820;
+}
+
+.carousel-wrap{position:relative;max-width:1120px;margin:0 auto;padding:0 20px;}
+.carousel{
+  display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px 2px 18px;cursor:grab;
+  scrollbar-width:thin;
+}
+.carousel.dragging{cursor:grabbing;user-select:none;}
+.carousel::-webkit-scrollbar{height:6px;}
+.carousel::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:10px;}
+
+.bank-card{
+  scroll-snap-align:start;flex:0 0 250px;
+  background:#15151F;border-radius:28px;padding:28px 22px 24px;
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
+  box-shadow:0 20px 40px -22px rgba(0,0,0,.5);
+}
+.bank-card.premium{background:linear-gradient(160deg,#2b220c,#1a1710);border:1px solid #6b551c;}
+.logo-badge{
+  width:78px;height:78px;border-radius:20px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;position:relative;
+}
+.logo-badge .glow{
+  position:absolute;inset:-18px;border-radius:50%;filter:blur(20px);opacity:.55;z-index:0;
+}
+.logo-badge .mark{position:relative;z-index:1;font-family:'Unbounded',sans-serif;font-weight:800;font-size:15px;
+  width:100%;height:100%;border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;}
+.glow-ozon{background:#1F6FF2;}
+.mark-ozon{background:#1F6FF2;font-size:12px;letter-spacing:.02em;}
+.glow-tbank{background:#FFDD2D;}
+.mark-tbank{background:#FFDD2D;color:#151515;clip-path:polygon(50% 0%,100% 22%,100% 62%,50% 100%,0% 62%,0% 22%);font-size:26px;}
+.glow-yandex{background:#B721FF;}
+.mark-yandex{background:linear-gradient(135deg,#F2295A,#8A2BE2);font-size:26px;}
+.glow-premium{background:#E8B84B;}
+.mark-premium{background:linear-gradient(135deg,#E8B84B,#8A6A16);font-size:20px;}
+
+.bank-card .amount{font-family:'Unbounded',sans-serif;font-weight:800;font-size:34px;color:#fff;}
+.bank-card .amount-cap{font-size:12px;color:rgba(255,255,255,.55);margin-bottom:14px;}
+.bank-card .btn-black{
+  background:#fff;color:#15151F;border-radius:100px;padding:12px 18px;font-weight:700;font-size:13.5px;
+  width:100%;text-align:center;display:block;
+}
+.bank-card.premium .btn-black{background:#E8B84B;color:#1a1710;}
+.bank-card .btn-outline{
+  margin-top:8px;font-size:12.5px;color:rgba(255,255,255,.55);text-decoration:underline;text-underline-offset:3px;
+}
+.bank-card .btn-outline:hover{color:#fff;}
+
