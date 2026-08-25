@@ -28,10 +28,12 @@ document.addEventListener('click', function (e) {
   if (el) trackOfferClick(el.getAttribute('data-offer'), el.getAttribute('data-offer-title') || '');
 });
 
-// Прокрутка карусели банков мышкой (drag-to-scroll)
+// Прокрутка карусели банков мышкой (drag-to-scroll) + свайп на телефоне
 document.addEventListener('DOMContentLoaded', function () {
   var el = document.querySelector('.carousel');
   if (!el) return;
+
+  // --- Drag-to-scroll мышью (десктоп) ---
   var isDown = false, startX, scrollLeft;
   el.addEventListener('mousedown', function (e) {
     isDown = true; el.classList.add('dragging');
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var x = e.pageX - el.offsetLeft;
     el.scrollLeft = scrollLeft - (x - startX) * 1.4;
   });
+
   // Колесо мыши тоже листает карусель по горизонтали
   el.addEventListener('wheel', function (e) {
     if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
@@ -53,6 +56,29 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
     }
   }, { passive: false });
+
+  // --- Центрируем карусель по среднему элементу при заходе на сайт ---
+  function centerCarouselOnMiddleCard() {
+    var cards = el.querySelectorAll('.bank-card');
+    if (!cards.length) return;
+    var middleCard = cards[Math.floor((cards.length - 1) / 2)];
+    var targetLeft = middleCard.offsetLeft - (el.clientWidth - middleCard.offsetWidth) / 2;
+    el.scrollLeft = Math.max(0, targetLeft);
+  }
+
+  // Ждём, пока картинки логотипов в карточках подгрузятся (иначе offsetWidth
+  // карусели ещё может быть неверным на мобильных до полного рендера).
+  if (document.readyState === 'complete') {
+    centerCarouselOnMiddleCard();
+  } else {
+    window.addEventListener('load', centerCarouselOnMiddleCard);
+  }
+  // Пересчитываем при повороте экрана / изменении размера окна
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(centerCarouselOnMiddleCard, 150);
+  });
 });
 
 // Небольшая анимация счётчика в hero-блоке на главной
