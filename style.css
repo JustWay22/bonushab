@@ -35,7 +35,7 @@ h1,h2,h3,.display{
 }
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
-.container{max-width:1120px;margin:0 auto;padding:0 24px;}
+.container{max-width:1120px;margin:0 auto;padding:0 24px;box-sizing:border-box;}
 .muted{color:var(--muted);}
 
 /* Header */
@@ -105,7 +105,7 @@ nav.main-nav a:hover{opacity:1;}
 .group-icon{font-size:30px;margin-right:10px;}
 
 /* Cards grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:20px;}
 .card{
   background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
   padding:24px;display:flex;flex-direction:column;gap:14px;
@@ -205,10 +205,93 @@ nav.main-nav a:hover{opacity:1;}
 
 .badge-group{display:inline-flex;align-items:center;gap:10px;font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;margin:0 0 6px;}
 
+/* ===================== MOBILE / RESPONSIVE OVERHAUL ===================== */
+
+/* Tablet & below */
+@media(max-width:860px){
+  .container{padding:0 18px;}
+  .offer-grid{gap:24px;}
+  .sticky-card{position:static;top:auto;}
+}
+
 @media(max-width:640px){
+  .container{padding:0 16px;}
+
+  /* Header */
+  .site-header .container{height:60px;}
+  .logo{font-size:17px;}
   nav.main-nav{display:none;}
+  .nav-cta{padding:8px 13px;font-size:12.5px;}
+
   .hero{padding:40px 0 24px;}
-  .why{margin:0 12px;padding:34px 22px;border-radius:24px;}
+
+  /* Home hero / notch bar */
+  .home-hero{padding:14px 0 44px;}
+  .notch-bar{
+    flex-wrap:wrap;justify-content:center;
+    padding:0 16px 18px;gap:8px;
+  }
+  .notch{padding:9px 14px;font-size:12px;}
+  .notch-side{max-width:none;flex:1 1 auto;text-align:center;}
+  .notch-mid{order:-1;flex:1 1 100%;margin-bottom:6px;}
+  .notch-dark{font-size:15px;}
+
+  .stat-banner{padding:22px 18px;border-radius:22px;margin:8px 12px 0;}
+  .stat-banner .label{font-size:13.5px;}
+
+  .offers-heading{font-size:24px;margin:34px 0 18px;padding:0 12px;}
+
+  .carousel-wrap{padding:0 12px;}
+  .carousel{gap:14px;padding:6px 2px 14px;-webkit-overflow-scrolling:touch;}
+  .bank-card{padding:22px 16px 18px;border-radius:22px;}
+  .logo-badge{width:64px;height:64px;border-radius:16px;margin-bottom:10px;}
+  .bank-card .amount{font-size:28px;}
+  .bank-card h3{font-size:15px;}
+  .bank-card .amount-cap{font-size:11.5px;margin-bottom:10px;}
+  .bank-card .btn-black{padding:11px 14px;font-size:12.5px;}
+
+  /* Sections */
+  .section{padding:40px 0;}
+  .section-head{margin-bottom:20px;}
+  .section-head h2{font-size:22px;}
+  .group-icon{font-size:24px;margin-right:6px;}
+
+  /* Cards */
+  .card{padding:18px;gap:11px;}
+  .card h3{font-size:17px;}
+  .card .icon{width:44px;height:44px;font-size:22px;border-radius:13px;}
+  .btn{padding:11px 16px;font-size:14px;}
+  .card-actions{gap:8px;}
+
+  /* Offer detail page */
+  .offer-hero{padding:36px 0 22px;}
+  .offer-hero .icon-big{width:60px;height:60px;font-size:30px;border-radius:18px;margin-bottom:14px;}
+  .panel{padding:20px;border-radius:18px;}
+
+  /* Why / footer */
+  .why{margin:0 10px;padding:30px 20px;border-radius:22px;}
+  .why h2{font-size:22px;}
+  .site-footer{padding:40px 0 96px;} /* extra bottom space so tg-float doesn't cover links */
+  .footer-cols{gap:24px;margin-bottom:24px;}
+  .legal-box{padding:16px 18px;font-size:12.5px;}
+  .copyright{flex-direction:column;gap:6px;}
+
+  /* Floating Telegram button */
+  .tg-float{
+    right:14px;bottom:14px;padding:12px 16px;font-size:13px;
+    box-shadow:0 10px 22px -10px rgba(42,159,232,.65);
+  }
+}
+
+@media(max-width:400px){
+  .hero h1{font-size:30px;}
+  .stat-banner .value{font-size:34px;}
+  .offers-heading{font-size:21px;}
+  .bank-card{flex-basis:74vw;}
+  .tg-float span.tg-label{display:none;}
+  .tg-float{padding:14px;border-radius:50%;}
+  .logo{font-size:15px;}
+  .nav-cta{padding:7px 10px;font-size:11px;}
 }
 
 /* ===================== NEW HOME HERO (notch bar + carousel) ===================== */
@@ -258,7 +341,7 @@ nav.main-nav a:hover{opacity:1;}
 .carousel::-webkit-scrollbar{display:none;height:0;}  /* Chrome/Safari: скрыть полосу прокрутки */
 
 .bank-card{
-  scroll-snap-align:start;flex:0 0 250px;
+  scroll-snap-align:center;flex:0 0 clamp(180px,68vw,250px);
   background:#111116;border:1px solid var(--line);border-radius:28px;padding:28px 22px 24px;
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;
   box-shadow:0 20px 40px -22px rgba(0,0,0,.7);
