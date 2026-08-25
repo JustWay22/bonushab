@@ -28,6 +28,33 @@ document.addEventListener('click', function (e) {
   if (el) trackOfferClick(el.getAttribute('data-offer'), el.getAttribute('data-offer-title') || '');
 });
 
+// Прокрутка карусели банков мышкой (drag-to-scroll)
+document.addEventListener('DOMContentLoaded', function () {
+  var el = document.querySelector('.carousel');
+  if (!el) return;
+  var isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', function (e) {
+    isDown = true; el.classList.add('dragging');
+    startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
+  });
+  ['mouseleave', 'mouseup'].forEach(function (evt) {
+    el.addEventListener(evt, function () { isDown = false; el.classList.remove('dragging'); });
+  });
+  el.addEventListener('mousemove', function (e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - el.offsetLeft;
+    el.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+  // Колесо мыши тоже листает карусель по горизонтали
+  el.addEventListener('wheel', function (e) {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      el.scrollLeft += e.deltaY;
+      e.preventDefault();
+    }
+  }, { passive: false });
+});
+
 // Небольшая анимация счётчика в hero-блоке на главной
 document.addEventListener('DOMContentLoaded', function () {
   var el = document.querySelector('[data-count-to]');
