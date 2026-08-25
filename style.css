@@ -276,6 +276,8 @@ nav.main-nav a:hover{opacity:1;}
 .glow-tbank{background:#FFDD2D;}
 .glow-yandex{background:#B721FF;}
 .glow-premium{background:#D4AF37;}
+.glow-bybit{background:#F7A600;}
+.glow-cryptobot{background:#2C9CDB;}
 .mark-premium{position:relative;z-index:1;font-size:28px;color:var(--primary);}
 
 .bank-card .amount{font-family:'Unbounded',sans-serif;font-weight:800;font-size:34px;color:#fff;}
